@@ -2,10 +2,9 @@
 #include <omp.h>
 
 int main() {
-    int n = 100000000;  // Number of terms for approximation
+    int n = 100000000;
     double pi_serial = 0.0, pi_parallel = 0.0;
 
-    // Serial computation
     double start_time = omp_get_wtime();
     for (int k = 0; k < n; k++) {
         pi_serial += ((k % 2 == 0) ? 1.0 : -1.0) / (2 * k + 1);
@@ -13,7 +12,6 @@ int main() {
     pi_serial *= 4;
     double serial_time = omp_get_wtime() - start_time;
 
-    // Parallel computation using reduction to avoid loop-carried dependency
     start_time = omp_get_wtime();
     #pragma omp parallel for reduction(+:pi_parallel)
     for (int k = 0; k < n; k++) {
