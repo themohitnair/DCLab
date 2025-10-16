@@ -52,7 +52,7 @@ void merge_sort_serial(int arr[], int l, int r) {
 }
 
 int main() {
-  int array_size = 10;
+  int array_size = 1000000;
   int arr[array_size];
   for (int i = 0; i < array_size; ++i) {
     arr[i] = rand() % 1000;
@@ -70,9 +70,10 @@ int main() {
   val = end - start;
   printf("Time for parallel is %f\n", val);
 
-  for (int i = 0; i < array_size; ++i) {
-    printf("%d ", arr[i]);
-  }
-  printf("\n");
   return 0;
 }
+
+/* Output:
+Time for serial is 0.093180
+Time for parallel is 0.161693
+*/
